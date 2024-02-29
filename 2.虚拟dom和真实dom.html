@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jsx练习</title>
+</head>
+
+<body>
+    <!-- 准备好一个容器 -->
+    <div id="test"></div>
+    <!--   ------------------------------------------------------------------- -->
+    <!-- 引入 React 核心库 -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <!-- 引入 react-dom 用于支持 react 操作 DOM -->
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <!-- 引入babel：
+    将jsx语法转化为js代码的库
+            1. ES6 ==> ES5
+            2. jsx ==> js
+    -->
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <!-- 此处一定要写babel 代表写的是jsx使用babel转化为js-->
+    <script type="text/babel">
+        // 1. 创建虚拟 DOM,jsx不要写引号,因为不是字符串是jsx的语法 
+        const data = ['Angular', 'React', 'Vue']
+        //const obj={name1:'Angular',name2:'React',name3:'Vue'}
+        const VDOM = (
+            <div>
+                <h1>前端开发框架列表</h1>
+                <ul>{
+                //里只能写带返回值的js代码(表达式)1.a,2.a+b3.demo(1)4.arr.map()5.function test(){}
+                    data.map((item,index)=>{
+                        //函数体
+                        return <li key={index}>{item}</li>
+                    })
+            }
+                </ul>
+            </div>
+        )
+        ReactDOM.render(VDOM, document.getElementById('test'))
+    </script>
+</body>
+
+</html>
