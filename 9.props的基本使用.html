@@ -5,7 +5,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>函数式组件</title>
+    <title>props的基础使用</title>
+    <style>
+        .title {
+            background-color: yellow;
+            width: 200px;
+        }
+    </style>
 </head>
 
 <body>
@@ -24,16 +30,19 @@
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
     <!-- 此处一定要写babel 代表写的是jsx使用babel转化为js-->
     <script type="text/babel">
-        //1.创建函数式组件
-        function MyComponent(){
-            console.log(this)
-            //这里的函数this是undefine,babel在转义时会开启严格模式防止指向window
-            return <h2>我是用函数定义的组件(适用于简单组建的定于)</h2>
+        class Person extends React.Component {
+            state={name:'tom',age:'18',sex:'女'}
+            render() {
+                return (
+                    <ul>
+                        <li>姓名:{this.props.name}</li>
+                        <li>性别:{this.state.sex}</li>
+                        <li>年龄:{this.state.age}</li>
+                    </ul>
+                )
+            }
         }
-        //渲染组件到页面
-        ReactDOM.render(<MyComponent/>,document.getElementById('test'))
-        /*执行ReactDOM.render之后发生了什么?1.React解析组件标签,找到MyComponent组件2.发现组件时函数定义的,
-        随后调用该函数,将返回的虚拟DOM转为真实的DOM随后呈现在页面中*/
+        ReactDOM.render(<Person name='tom'/>, document.getElementById('test'))
     </script>
 </body>
 
